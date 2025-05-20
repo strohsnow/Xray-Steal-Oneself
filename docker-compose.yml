@@ -1,0 +1,17 @@
+services:
+    caddy:
+        image: ghcr.io/caddybuilds/caddy-cloudflare:2.10
+        container_name: caddy
+        hostname: caddy
+        restart: always
+        network_mode: host
+        environment:
+            - SELFSTEAL_DOMAIN=your.domain.com
+            - CLOUDFLARE_API_TOKEN=your_cloudflare_api_token
+        volumes:
+            - $PWD/Caddyfile:/etc/caddy/Caddyfile
+            - $PWD/index.html:/srv/index.html
+            - caddy-data:/data
+
+volumes:
+    caddy-data:
