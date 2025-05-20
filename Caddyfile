@@ -1,0 +1,23 @@
+{
+    servers {
+        listener_wrappers {
+            proxy_protocol {
+                allow 127.0.0.1/32
+            }
+            tls
+        }
+    }
+}
+
+{$SELFSTEAL_DOMAIN}:8443 {
+    bind 127.0.0.1
+
+    root * /usr/share/caddy
+    file_server
+
+    tls {
+        dns cloudflare {$CLOUDFLARE_API_TOKEN}
+    }
+
+    header Strict-Transport-Security "max-age=63072000"
+}
