@@ -12,7 +12,7 @@
 {$SELFSTEAL_DOMAIN}:8443 {
     bind 127.0.0.1
 
-    root * /usr/share/caddy
+    root * /srv
     file_server
 
     tls {
