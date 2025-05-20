@@ -41,7 +41,8 @@
         "destOverride": [
           "http",
           "tls"
-        ]
+        ],
+        "routeOnly": true
       }
     }
   ],
