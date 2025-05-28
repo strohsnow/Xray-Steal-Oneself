@@ -6,6 +6,7 @@
             }
             tls
         }
+        trusted_proxies static 127.0.0.1/32
     }
 }
 
@@ -20,4 +21,9 @@
     }
 
     header Strict-Transport-Security "max-age=63072000"
+
+    log {
+        output file /var/log/caddy/access.log
+        format console
+    }
 }
