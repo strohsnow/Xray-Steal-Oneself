@@ -1,13 +1,13 @@
 {
   "log": {
-    "loglevel": "warning"
+    "loglevel": "none"
   },
   "dns": {
     "servers": [
-      "https://1.1.1.1/dns-query",
-      "https://1.0.0.1/dns-query",
-      "1.1.1.1",
-      "1.0.0.1"
+      "https+local://1.1.1.1/dns-query",
+      "https+local://1.0.0.1/dns-query",
+      "tcp+local://1.1.1.1",
+      "tcp+local://1.0.0.1"
     ],
     "queryStrategy": "UseIPv4"
   },
@@ -25,7 +25,7 @@
         "security": "reality",
         "realitySettings": {
           "show": false,
-          "xver": 1,
+          "xver": 2,
           "target": 8443,
           "shortIds": [
             ""
@@ -40,7 +40,8 @@
         "enabled": true,
         "destOverride": [
           "http",
-          "tls"
+          "tls",
+          "quic"
         ],
         "routeOnly": true
       }
@@ -71,6 +72,12 @@
         "outboundTag": "dns-out"
       },
       {
+        "protocol": [
+          "bittorrent"
+        ],
+        "outboundTag": "block"
+      },
+      {
         "ip": [
           "geoip:private"
         ],
@@ -79,12 +86,6 @@
       {
         "domain": [
           "geosite:private"
-        ],
-        "outboundTag": "block"
-      },
-      {
-        "protocol": [
-          "bittorrent"
         ],
         "outboundTag": "block"
       }
