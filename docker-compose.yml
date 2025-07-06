@@ -10,7 +10,6 @@ services:
             - CLOUDFLARE_API_TOKEN=your_cloudflare_api_token
         volumes:
             - $PWD/Caddyfile:/etc/caddy/Caddyfile
-            - $PWD/access.log:/var/log/caddy/access.log
             - $PWD/index.html:/srv/index.html
             - caddy-data:/data
 
