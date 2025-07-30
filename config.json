@@ -5,9 +5,7 @@
   "dns": {
     "servers": [
       "https+local://1.1.1.1/dns-query",
-      "https+local://1.0.0.1/dns-query",
-      "tcp+local://1.1.1.1",
-      "tcp+local://1.0.0.1"
+      "tcp+local://1.1.1.1"
     ],
     "queryStrategy": "UseIPv4"
   },
@@ -40,8 +38,7 @@
         "enabled": true,
         "destOverride": [
           "http",
-          "tls",
-          "quic"
+          "tls"
         ],
         "routeOnly": true
       }
@@ -56,7 +53,7 @@
       }
     },
     {
-      "tag": "dns-out",
+      "tag": "dns",
       "protocol": "dns"
     },
     {
@@ -68,7 +65,7 @@
     "rules": [
       {
         "port": 53,
-        "outboundTag": "dns-out"
+        "outboundTag": "dns"
       },
       {
         "protocol": [
