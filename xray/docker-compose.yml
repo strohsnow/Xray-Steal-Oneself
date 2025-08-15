@@ -7,5 +7,5 @@ services:
     network_mode: host
     user: root
     volumes:
-      - $PWD/config.jsonc:/usr/local/etc/xray/config.jsonc
-      - $PWD/logs:/var/log/xray
+      - ./config.jsonc:/usr/local/etc/xray/config.jsonc
+      - ./logs:/var/log/xray
