@@ -7,9 +7,9 @@ services:
     network_mode: host
     env_file: .env
     volumes:
-      - $PWD/Caddyfile:/etc/caddy/Caddyfile
-      - $PWD/index.html:/srv/index.html
-      - $PWD/sub:/srv/sub
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./index.html:/srv/index.html
+      - ./sub:/srv/sub
       - caddy-data:/data
 
 volumes:
