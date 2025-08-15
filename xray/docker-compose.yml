@@ -1,0 +1,11 @@
+services:
+  xray:
+    image: ghcr.io/xtls/xray-core:latest
+    container_name: xray
+    hostname: xray
+    restart: always
+    network_mode: host
+    user: root
+    volumes:
+      - $PWD/config.jsonc:/usr/local/etc/xray/config.jsonc
+      - $PWD/logs:/var/log/xray

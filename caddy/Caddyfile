@@ -15,10 +15,15 @@
 
     root * /srv
     file_server
+    header Strict-Transport-Security "max-age=63072000"
+
+    handle /{$SECRET_PATH} {
+        rewrite * /sub
+        file_server
+        header routing {$ROUTING_HEADER}
+    }
 
     tls {
         dns cloudflare {$CLOUDFLARE_API_TOKEN}
     }
-
-    header Strict-Transport-Security "max-age=63072000"
 }

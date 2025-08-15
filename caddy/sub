@@ -1,0 +1,1 @@
+vless://your-uuid@your.domain.com:443?security=reality&type=tcp&flow=xtls-rprx-vision&sni=your.domain.com&pbk=your_public_key#your_remark

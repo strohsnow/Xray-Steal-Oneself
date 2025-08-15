@@ -1,6 +1,9 @@
 {
   "log": {
-    "loglevel": "none"
+    "access": "/var/log/xray/access.log",
+    "error": "/var/log/xray/error.log",
+    "loglevel": "warning",
+    "dnsLog": false
   },
   "dns": {
     "servers": [
@@ -15,22 +18,26 @@
       "port": 443,
       "protocol": "vless",
       "settings": {
-        "clients": [],
+        "clients": [
+          {
+            "id": "your-uuid",  // docker compose exec xray xray uuid
+            "flow": "xtls-rprx-vision"
+          }
+        ],
         "decryption": "none"
       },
       "streamSettings": {
         "network": "raw",
         "security": "reality",
         "realitySettings": {
-          "show": false,
-          "xver": 2,
           "target": 8443,
+          "xver": 1,
+          "serverNames": [
+            "your.domain.com"  // consistent with Caddy config
+          ],
+          "privateKey": "your_private_key",  // docker compose exec xray xray x25519 
           "shortIds": [
             ""
-          ],
-          "privateKey": "your_private_key",
-          "serverNames": [
-            "your.domain.com"
           ]
         }
       },
@@ -47,7 +54,7 @@
   "outbounds": [
     {
       "tag": "direct",
-      "protocol": "freedom",
+      "protocol": "direct",
       "settings": {
         "domainStrategy": "UseIPv4"
       }
@@ -58,10 +65,11 @@
     },
     {
       "tag": "block",
-      "protocol": "blackhole"
+      "protocol": "block"
     }
   ],
   "routing": {
+    "domainStrategy": "IPIfNonMatch",
     "rules": [
       {
         "port": 53,
@@ -75,17 +83,18 @@
       },
       {
         "ip": [
-          "geoip:private"
+          "geoip:private",
+          "geoip:ru"
         ],
         "outboundTag": "block"
       },
       {
         "domain": [
-          "geosite:private"
+          "geosite:private",
+          "geosite:category-ru"
         ],
         "outboundTag": "block"
       }
-    ],
-    "domainStrategy": "IPIfNonMatch"
+    ]
   }
 }
