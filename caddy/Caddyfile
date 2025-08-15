@@ -17,7 +17,7 @@
     file_server
     header Strict-Transport-Security "max-age=63072000"
 
-    handle /{$SECRET_PATH} {
+    handle /{$SUB_PATH} {
         rewrite * /sub
         file_server
         header routing {$ROUTING_HEADER}
