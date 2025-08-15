@@ -5,7 +5,7 @@
   "dns": {
     "servers": [
       "https+local://1.1.1.1/dns-query",
-      "tcp+local://1.1.1.1"
+      "https+local://1.0.0.1/dns-query"
     ],
     "queryStrategy": "UseIPv4"
   },
