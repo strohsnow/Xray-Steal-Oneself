@@ -1,8 +1,7 @@
 services:
   caddy:
-    image: ghcr.io/caddybuilds/caddy-cloudflare:2.9.1
+    image: caddy:2.9.1
     container_name: caddy
-    hostname: caddy
     restart: always
     network_mode: host
     env_file: .env
@@ -10,7 +9,7 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - ./index.html:/srv/index.html
       - ./sub:/srv/sub
-      - caddy-data:/data
+      - ssl-data:/data
 
 volumes:
-  caddy-data:
+  ssl-data:

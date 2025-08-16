@@ -2,7 +2,6 @@ services:
   xray:
     image: ghcr.io/xtls/xray-core:latest
     container_name: xray
-    hostname: xray
     restart: always
     network_mode: host
     user: root

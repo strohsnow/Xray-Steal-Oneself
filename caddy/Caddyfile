@@ -1,29 +1,26 @@
 {
-    servers {
-        listener_wrappers {
-            proxy_protocol {
-                allow 127.0.0.1/32
-            }
-            tls
-        }
-        trusted_proxies static 127.0.0.1/32
+  https_port 8443
+  servers {
+    listener_wrappers {
+      proxy_protocol {
+        allow 127.0.0.1/32
+      }
+      tls
     }
+    trusted_proxies static 127.0.0.1/32
+  }
 }
 
-{$STEAL_DOMAIN}:8443 {
-    bind 127.0.0.1
+{$REALITY_DOMAIN} {
+  bind 127.0.0.1
 
-    root * /srv
+  root * /srv
+  file_server
+  header Strict-Transport-Security "max-age=63072000"
+
+  handle /{$SUB_PATH} {
+    rewrite * /sub
     file_server
-    header Strict-Transport-Security "max-age=63072000"
-
-    handle /{$SUB_PATH} {
-        rewrite * /sub
-        file_server
-        header routing {$ROUTING_HEADER}
-    }
-
-    tls {
-        dns cloudflare {$CLOUDFLARE_API_TOKEN}
-    }
+    header routing {$ROUTING_HEADER}
+  }
 }
