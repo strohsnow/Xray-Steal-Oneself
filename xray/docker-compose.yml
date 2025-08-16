@@ -8,4 +8,4 @@ services:
     user: root
     volumes:
       - ./config.jsonc:/usr/local/etc/xray/config.jsonc
-      - ./logs:/var/log/xray
+      - /var/log/xray:/var/log/xray
