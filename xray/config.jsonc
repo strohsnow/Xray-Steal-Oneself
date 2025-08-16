@@ -20,7 +20,7 @@
       "settings": {
         "clients": [
           {
-            "id": "your-uuid",  // docker compose exec xray xray uuid
+            "id": "your-uuid",  // docker run --rm ghcr.io/xtls/xray-core uuid
             "flow": "xtls-rprx-vision"
           }
         ],
@@ -35,7 +35,7 @@
           "serverNames": [
             "your.domain.com"  // consistent with Caddy config
           ],
-          "privateKey": "your_private_key",  // docker compose exec xray xray x25519 
+          "privateKey": "your_private_key",  // docker run --rm ghcr.io/xtls/xray-core x25519
           "shortIds": [
             ""
           ]
