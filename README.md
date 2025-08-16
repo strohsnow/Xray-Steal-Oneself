@@ -11,6 +11,10 @@ Enable TCP BBR:
 ```
 echo -e "net.core.default_qdisc = fq\nnet.ipv4.tcp_congestion_control = bbr" | sudo tee /etc/sysctl.d/99-bbr.conf > /dev/null && sudo sysctl -p /etc/sysctl.d/99-bbr.conf
 ```
+Install Git:
+```
+sudo apt update -y && sudo apt install -y git
+```
 Clone the repository:
 ```
 sudo git clone https://github.com/strohsnow/Xray-Steal-Oneself /opt/Xray-Steal-Oneself
@@ -56,7 +60,7 @@ docker compose -f /opt/Xray-Steal-Oneself/caddy/docker-compose.yml up -d
 ### Configure log rotation
 Install logrotate (if not installed):
 ```
-sudo apt update && sudo apt install logrotate
+sudo apt update -y && sudo apt install -y logrotate
 ```
 Create a logrotate configuration file:
 ```
@@ -65,11 +69,16 @@ sudo nano /etc/logrotate.d/xray
 Paste the following configuration:
 ```
 /var/log/xray/*.log {
-      size 50M
-      rotate 5
-      compress
-      missingok
-      notifempty
-      copytruncate
+  size 50M
+  rotate 5
+  compress
+  missingok
+  notifempty
+  copytruncate
 }
+```
+### Connect with Happ
+Open Happ and import your subscription link:
+```
+https://your.domain.com/your_sub_path
 ```
