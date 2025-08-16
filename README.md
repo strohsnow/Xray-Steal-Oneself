@@ -58,7 +58,7 @@ Start Caddy:
 docker compose -f /opt/Xray-Steal-Oneself/caddy/docker-compose.yml up -d
 ```
 ### Configure log rotation
-Install logrotate (if not installed):
+Install logrotate:
 ```
 sudo apt update -y && sudo apt install -y logrotate
 ```
