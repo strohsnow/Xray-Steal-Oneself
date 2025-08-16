@@ -30,5 +30,5 @@ Paste the following logrotate configuration for Xray:
       missingok
       notifempty
       copytruncate
-  }
+}
 ```
