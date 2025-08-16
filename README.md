@@ -7,11 +7,11 @@ Add current user to the docker group (if not root):
 ```
 sudo usermod -aG docker $USER
 ```
-Enable TCP BBR
+Enable TCP BBR:
 ```
 echo -e "net.core.default_qdisc = fq\nnet.ipv4.tcp_congestion_control = bbr" | sudo tee /etc/sysctl.d/99-bbr.conf > /dev/null && sudo sysctl -p /etc/sysctl.d/99-bbr.conf
 ```
-Clone the repository
+Clone the repository:
 ```
 sudo git clone https://github.com/strohsnow/Xray-Steal-Oneself /opt/Xray-Steal-Oneself
 ```
