@@ -10,7 +10,7 @@
     }
 }
 
-{$SELFSTEAL_DOMAIN}:8443 {
+{$STEAL_DOMAIN}:8443 {
     bind 127.0.0.1
 
     root * /srv
