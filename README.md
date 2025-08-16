@@ -11,7 +11,7 @@ echo -e "net.core.default_qdisc = fq\nnet.ipv4.tcp_congestion_control = bbr" | s
 ### Configure log rotation
 Create a directory for logs:
 ```
-mkdir -p /var/log/xray
+sudo mkdir -p /var/log/xray
 ```
 Install logrotate:
 ```
