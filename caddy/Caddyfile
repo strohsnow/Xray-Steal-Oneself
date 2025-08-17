@@ -14,13 +14,36 @@
 {$REALITY_DOMAIN} {
   bind 127.0.0.1
 
-  root * /srv
-  file_server
   header Strict-Transport-Security "max-age=63072000"
 
-  handle /{$SUB_PATH} {
-    rewrite * /sub
+  handle_path / {
+    root * /srv
     file_server
-    header routing {$ROUTING_HEADER}
   }
+
+  @hwid_empty {
+    path /{$SUB_PATH}
+    expression "{$ALLOWED_HWID}" == ""
+  }
+
+  handle @hwid_empty {
+    root * /srv
+    file_server
+    rewrite * /sub
+    header routing "{$ROUTING_HEADER}"
+  }
+
+  @hwid_match {
+    path /{$SUB_PATH}
+    header_regexp x-hwid "{$ALLOWED_HWID}"
+  }
+
+  handle @hwid_match {
+    root * /srv
+    file_server
+    rewrite * /sub
+    header routing "{$ROUTING_HEADER}"
+  }
+
+  respond 404
 }
