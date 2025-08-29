@@ -45,7 +45,8 @@
         "enabled": true,
         "destOverride": [
           "http",
-          "tls"
+          "tls",
+          "quic"
         ],
         "routeOnly": true
       }
@@ -90,7 +91,6 @@
       },
       {
         "domain": [
-          "geosite:private",
           "geosite:category-ru"
         ],
         "outboundTag": "block"
