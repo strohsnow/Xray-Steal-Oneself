@@ -32,10 +32,6 @@ Edit values in Xray config:
 ```
 sudo nano /opt/Xray-Steal-Oneself/xray/config.jsonc
 ```
-Create a directory for logs:
-```
-sudo mkdir -p /var/log/xray
-```
 Start Xray:
 ```
 docker compose -f /opt/Xray-Steal-Oneself/xray/docker-compose.yml up -d
