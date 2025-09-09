@@ -11,6 +11,10 @@ Enable TCP BBR:
 ```
 echo -e "net.core.default_qdisc = fq\nnet.ipv4.tcp_congestion_control = bbr" | sudo tee /etc/sysctl.d/99-bbr.conf > /dev/null && sudo sysctl -p /etc/sysctl.d/99-bbr.conf
 ```
+Disable IPv6:
+```
+echo -e "net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 = 1" | sudo tee /etc/sysctl.d/99-ipv6.conf > /dev/null && sudo sysctl -p /etc/sysctl.d/99-ipv6.conf
+```
 Install Git:
 ```
 sudo apt update -y && sudo apt install -y git
@@ -18,6 +22,27 @@ sudo apt update -y && sudo apt install -y git
 Clone the repository:
 ```
 sudo git clone https://github.com/strohsnow/Xray-Steal-Oneself /opt/Xray-Steal-Oneself
+```
+### Configure UFW
+Disable IPv6:
+```
+sudo sed -i 's/^IPV6=yes/IPV6=no/' /etc/default/ufw
+```
+Allow SSH:
+```
+sudo ufw allow ssh comment "SSH"
+```
+Allow HTTP:
+```
+sudo ufw allow http comment "HTTP"
+```
+Allow HTTPS:
+```
+sudo ufw allow https comment "HTTPS"
+```
+Enable UFW:
+```
+sudo ufw enable
 ```
 ### Configure Xray
 Generate uuid:
