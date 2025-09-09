@@ -19,11 +19,6 @@ Clone the repository:
 ```
 sudo git clone https://github.com/strohsnow/Xray-Steal-Oneself /opt/Xray-Steal-Oneself
 ```
-### Configure Cloudflare
-Onboard your domain on Cloudflare and add a DNS record:
-```
-A  @  your.server.ip.address  DNS Only
-```
 ### Configure Xray
 Generate uuid:
 ```
