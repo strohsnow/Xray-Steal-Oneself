@@ -1,7 +1,5 @@
 {
   https_port 8443
-  default_bind 127.0.0.1
-  acme_dns cloudflare {$CLOUDFLARE_API_TOKEN}
   servers {
     listener_wrappers {
       proxy_protocol {
@@ -14,6 +12,8 @@
 }
 
 {$REALITY_DOMAIN} {
+  bind 127.0.0.1
+
   header Strict-Transport-Security "max-age=63072000"
 
   handle_path / {
