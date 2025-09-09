@@ -1,6 +1,6 @@
 services:
   caddy:
-    image: ghcr.io/caddybuilds/caddy-cloudflare:2.9.1
+    image: caddy:2.9.1
     container_name: caddy
     restart: always
     network_mode: host
