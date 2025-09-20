@@ -8,6 +8,7 @@
       tls
     }
     trusted_proxies static 127.0.0.1/32
+    protocols h1 h2
   }
 }
 
