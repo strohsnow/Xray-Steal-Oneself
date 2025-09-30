@@ -91,6 +91,7 @@
       },
       {
         "domain": [
+          "geosite:private",
           "geosite:category-ru"
         ],
         "outboundTag": "block"
