@@ -29,7 +29,6 @@
   handle @hwid_empty {
     root * /srv
     file_server
-    rewrite * /sub
     header routing "{$ROUTING_HEADER}"
   }
 
@@ -41,7 +40,6 @@
   handle @hwid_match {
     root * /srv
     file_server
-    rewrite * /sub
     header routing "{$ROUTING_HEADER}"
   }
 
