@@ -3,10 +3,6 @@ Install Docker:
 ```
 sudo curl -fsSL https://get.docker.com | sh
 ```
-Add current user to the docker group (if not root):
-```
-sudo usermod -aG docker $USER
-```
 Enable TCP BBR:
 ```
 echo -e "net.core.default_qdisc = fq\nnet.ipv4.tcp_congestion_control = bbr" | sudo tee /etc/sysctl.d/99-bbr.conf > /dev/null && sudo sysctl -p /etc/sysctl.d/99-bbr.conf
@@ -47,11 +43,11 @@ sudo ufw enable
 ### Configure Xray
 Generate uuid:
 ```
-docker run --rm ghcr.io/xtls/xray-core uuid
+sudo docker run --rm ghcr.io/xtls/xray-core uuid
 ```
 Generate x25519 key pair:
 ```
-docker run --rm ghcr.io/xtls/xray-core x25519
+sudo docker run --rm ghcr.io/xtls/xray-core x25519
 ```
 Edit values in Xray config:
 ```
@@ -59,7 +55,7 @@ sudo nano /opt/Xray-Steal-Oneself/xray/config.jsonc
 ```
 Start Xray:
 ```
-docker compose -f /opt/Xray-Steal-Oneself/xray/docker-compose.yml up -d
+sudo docker compose -f /opt/Xray-Steal-Oneself/xray/docker-compose.yml up -d
 ```
 ### Configure Caddy
 Generate a sub path:
@@ -80,7 +76,7 @@ sudo nano /opt/Xray-Steal-Oneself/caddy/sub
 ```
 Start Caddy:
 ```
-docker compose -f /opt/Xray-Steal-Oneself/caddy/docker-compose.yml up -d
+sudo docker compose -f /opt/Xray-Steal-Oneself/caddy/docker-compose.yml up -d
 ```
 ### Configure log rotation
 Install logrotate:
