@@ -58,7 +58,7 @@ Start Xray:
 sudo docker compose -f /opt/Xray-Steal-Oneself/xray/docker-compose.yml up -d
 ```
 ### Configure Caddy
-Generate a sub path:
+Generate a random path for sub:
 ```
 openssl rand -hex 8
 ```
