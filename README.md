@@ -28,10 +28,6 @@ Allow SSH:
 ```
 sudo ufw allow ssh comment "SSH"
 ```
-Allow HTTP:
-```
-sudo ufw allow http comment "HTTP"
-```
 Allow HTTPS:
 ```
 sudo ufw allow https comment "HTTPS"
