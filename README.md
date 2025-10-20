@@ -97,5 +97,5 @@ Paste the following configuration:
 ### Connect with Happ
 Open Happ and import your subscription link:
 ```
-https://your.domain.com/your_sub_path
+https://reality.domain.tld/your_sub_path
 ```
