@@ -1,5 +1,7 @@
 {
+  acme_dns cloudflare {$CLOUDFLARE_API_TOKEN}
   https_port 8443
+  default_bind 127.0.0.1
   servers {
     listener_wrappers {
       proxy_protocol {
@@ -12,8 +14,6 @@
 }
 
 {$REALITY_DOMAIN} {
-  bind 127.0.0.1
-
   header Strict-Transport-Security "max-age=63072000"
 
   handle_path / {
@@ -25,7 +25,6 @@
     path /{$SUB_PATH}
     expression "{$ALLOWED_HWID}" == ""
   }
-
   handle @hwid_empty {
     root * /srv
     file_server
@@ -36,7 +35,6 @@
     path /{$SUB_PATH}
     header_regexp x-hwid "{$ALLOWED_HWID}"
   }
-
   handle @hwid_match {
     root * /srv
     file_server
@@ -44,4 +42,8 @@
   }
 
   respond 404
+}
+
+*.{BASE_DOMAIN} {
+  abort
 }
