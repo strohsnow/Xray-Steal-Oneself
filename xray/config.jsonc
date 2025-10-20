@@ -33,7 +33,7 @@
           "target": 8443,
           "xver": 1,
           "serverNames": [
-            "your.domain.com"  // Consistent with Caddy config
+            "reality.domain.tld"  // Consistent with Caddy config
           ],
           "privateKey": "your_private_key",  // docker run --rm ghcr.io/xtls/xray-core x25519
           "shortIds": [
