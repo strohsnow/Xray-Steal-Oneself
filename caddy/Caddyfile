@@ -1,7 +1,12 @@
 {
   acme_dns cloudflare {$CLOUDFLARE_API_TOKEN}
+
   https_port 8443
   default_bind 127.0.0.1
+
+  admin off
+  persist_config off
+
   servers {
     listener_wrappers {
       proxy_protocol {
@@ -13,8 +18,16 @@
   }
 }
 
-{$REALITY_DOMAIN} {
-  header Strict-Transport-Security "max-age=63072000"
+{$REALITY_DOMAIN}.{$BASE_DOMAIN} {
+  header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+  reverse_proxy /{$GRPC_PATH}/* unix/@grpc.sock {
+    flush_interval -1
+    transport http {
+      versions h2c
+      proxy_protocol v2
+    }
+  }
 
   handle_path / {
     root * /srv
@@ -40,8 +53,6 @@
     file_server
     header routing "{$ROUTING_HEADER}"
   }
-
-  respond 404
 }
 
 *.{BASE_DOMAIN} {
