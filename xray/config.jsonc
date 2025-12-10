@@ -8,13 +8,13 @@
   "dns": {
     "servers": [
       "https+local://1.1.1.1/dns-query",
-      "https+local://1.0.0.1/dns-query"
+      "https+local://8.8.8.8/dns-query"
     ],
     "queryStrategy": "UseIPv4"
   },
   "inbounds": [
     {
-      "tag": "proxy",
+      "tag": "VISION",
       "port": 443,
       "protocol": "vless",
       "settings": {
@@ -24,14 +24,20 @@
             "flow": "xtls-rprx-vision"
           }
         ],
-        "decryption": "none"
+        "decryption": "none",
+        "fallbacks": [
+          {
+            "dest": "@xhttp.sock",
+            "xver": 2
+          }
+        ]
       },
       "streamSettings": {
         "network": "raw",
         "security": "reality",
         "realitySettings": {
           "target": 8443,
-          "xver": 1,
+          "xver": 2,
           "serverNames": [
             "reality.domain.tld"  // Consistent with Caddy config
           ],
@@ -43,12 +49,74 @@
       },
       "sniffing": {
         "enabled": true,
+        "routeOnly": true,
         "destOverride": [
           "http",
           "tls",
           "quic"
+        ]
+      }
+    },
+    {
+      "tag": "XHTTP",
+      "listen": "@xhttp.sock",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "your-uuid"  // the same uuid generated above
+          }
         ],
-        "routeOnly": true
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "xhttpSettings": {
+          "path": "/your-path"  // openssl rand -hex 8
+        },
+        "sockopt": {
+          "acceptProxyProtocol": true
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "routeOnly": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "GRPC",
+      "listen": "@grpc.sock",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "your-uuid"  // the same uuid generated above
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "your-service-name"  // openssl rand -hex 8
+        },
+        "sockopt": {
+          "acceptProxyProtocol": true
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "routeOnly": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
       }
     }
   ],
@@ -61,27 +129,17 @@
       }
     },
     {
-      "tag": "dns",
-      "protocol": "dns"
-    },
-    {
       "tag": "block",
       "protocol": "block"
+    },
+    {
+      "tag": "dns",
+      "protocol": "dns"
     }
   ],
   "routing": {
     "domainStrategy": "IPIfNonMatch",
     "rules": [
-      {
-        "port": 53,
-        "outboundTag": "dns"
-      },
-      {
-        "protocol": [
-          "bittorrent"
-        ],
-        "outboundTag": "block"
-      },
       {
         "ip": [
           "geoip:private",
@@ -95,6 +153,16 @@
           "geosite:category-ru"
         ],
         "outboundTag": "block"
+      },
+      {
+        "protocol": [
+          "bittorrent"
+        ],
+        "outboundTag": "block"
+      }
+      {
+        "port": 53,
+        "outboundTag": "dns"
       }
     ]
   }
