@@ -72,7 +72,7 @@
       "streamSettings": {
         "network": "xhttp",
         "xhttpSettings": {
-          "path": "/your-path"  // openssl rand -hex 8
+          "path": "/your_path"  // openssl rand -hex 8
         },
         "sockopt": {
           "acceptProxyProtocol": true
@@ -103,7 +103,7 @@
       "streamSettings": {
         "network": "grpc",
         "grpcSettings": {
-          "serviceName": "your-service-name"  // openssl rand -hex 8
+          "serviceName": "your_service_name"  // openssl rand -hex 8
         },
         "sockopt": {
           "acceptProxyProtocol": true
