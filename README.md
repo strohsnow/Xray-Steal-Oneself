@@ -45,6 +45,10 @@ Generate x25519 key pair:
 ```
 sudo docker run --rm ghcr.io/xtls/xray-core x25519
 ```
+Generate XHTTP path and GRPC service name:
+```
+openssl rand -hex 8
+```
 Edit values in Xray config:
 ```
 sudo nano /opt/Xray-Steal-Oneself/xray/config.jsonc
