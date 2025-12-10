@@ -1,1 +1,3 @@
-vless://your-uuid@your.domain.com:443?security=reality&type=tcp&flow=xtls-rprx-vision&sni=your.domain.com&pbk=your_public_key#your_remark
+vless://your-uuid@reality.domain.tld:443?security=reality&type=tcp&flow=xtls-rprx-vision&sni=reality.domain.tld&pbk=your_public_key#VISION
+vless://your-uuid@dreality.domain.tld:443?security=reality&type=xhttp&path=%2Fyour_path&mode=packet-up&sni=reality.domain.tld&pbk=your_public_key#XHTTP
+vless://your-uuid@reality.domain.tld:443?security=tls&type=grpc&serviceName=your_service_name&mode=gun&sni=reality.domain.tld&alpn=h2#GRPC
