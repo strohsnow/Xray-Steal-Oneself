@@ -7,9 +7,15 @@ services:
     env_file: .env
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./index.html:/srv/index.html
       - ./sub:/srv/${SUB_PATH}
-      - ssl-data:/data
+      - caddy-data:/data
+
+  minio:
+    image: quay.io/minio/minio:latest
+    command: server /tmp --console-address ":9001"
+    restart: always
+    network_mode: host
+    env_file: .env
 
 volumes:
-  ssl-data:
+  caddy-data:
