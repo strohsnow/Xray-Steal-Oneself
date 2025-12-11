@@ -21,17 +21,16 @@
 {$REALITY_DOMAIN}.{$BASE_DOMAIN} {
   header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 
-  reverse_proxy /{$GRPC_PATH}/* unix/@grpc.sock {
+  @grpc {
+    protocol grpc
+    path /{$GRPC_PATH}/*
+  }
+  reverse_proxy @grpc unix/@grpc.sock {
     flush_interval -1
     transport http {
       versions h2c
       proxy_protocol v2
     }
-  }
-
-  handle_path / {
-    root * /srv
-    file_server
   }
 
   @hwid_empty {
@@ -53,6 +52,8 @@
     file_server
     header routing "{$ROUTING_HEADER}"
   }
+
+  reverse_proxy 127.0.0.1:9001
 }
 
 *.{BASE_DOMAIN} {
