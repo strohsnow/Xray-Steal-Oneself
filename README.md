@@ -13,13 +13,17 @@ echo -e "net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 
 ```
 Install Git:
 ```
-sudo apt update -y && sudo apt install -y git
+sudo apt install -y git
 ```
 Clone the repository:
 ```
 sudo git clone https://github.com/strohsnow/Xray-Steal-Oneself /opt/Xray-Steal-Oneself
 ```
 ### Configure UFW
+Install UFW:
+```
+sudo apt install -y ufw
+```
 Disable IPv6:
 ```
 sudo sed -i 's/^IPV6=yes/IPV6=no/' /etc/default/ufw
