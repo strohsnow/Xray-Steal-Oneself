@@ -87,53 +87,22 @@
           "quic"
         ]
       }
-    },
-    {
-      "tag": "GRPC",
-      "listen": "@grpc.sock",
-      "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "id": "your-uuid"  // the same uuid generated above
-          }
-        ],
-        "decryption": "none"
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "grpcSettings": {
-          "serviceName": "your_service_name"  // openssl rand -hex 8
-        },
-        "sockopt": {
-          "acceptProxyProtocol": true
-        }
-      },
-      "sniffing": {
-        "enabled": true,
-        "routeOnly": true,
-        "destOverride": [
-          "http",
-          "tls",
-          "quic"
-        ]
-      }
     }
   ],
   "outbounds": [
     {
-      "tag": "direct",
+      "tag": "DIRECT",
       "protocol": "direct",
       "settings": {
-        "domainStrategy": "UseIPv4"
+        "domainStrategy": "ForceIPv4"
       }
     },
     {
-      "tag": "block",
+      "tag": "BLOCK",
       "protocol": "block"
     },
     {
-      "tag": "dns",
+      "tag": "DNS",
       "protocol": "dns"
     }
   ],
@@ -145,24 +114,24 @@
           "geoip:private",
           "geoip:ru"
         ],
-        "outboundTag": "block"
+        "outboundTag": "BLOCK"
       },
       {
         "domain": [
           "geosite:private",
           "geosite:category-ru"
         ],
-        "outboundTag": "block"
+        "outboundTag": "BLOCK"
       },
       {
         "protocol": [
           "bittorrent"
         ],
-        "outboundTag": "block"
+        "outboundTag": "BLOCK"
       }
       {
         "port": 53,
-        "outboundTag": "dns"
+        "outboundTag": "DNS"
       }
     ]
   }
