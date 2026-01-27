@@ -45,7 +45,7 @@ Generate x25519 key pair:
 ```
 sudo docker run --rm ghcr.io/xtls/xray-core x25519
 ```
-Generate XHTTP path and GRPC service name:
+Generate XHTTP path:
 ```
 openssl rand -hex 8
 ```
