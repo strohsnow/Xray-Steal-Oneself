@@ -21,18 +21,6 @@
 {$REALITY_DOMAIN}.{$BASE_DOMAIN} {
   header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 
-  @grpc {
-    protocol grpc
-    path /{$GRPC_PATH}/*
-  }
-  reverse_proxy @grpc unix/@grpc.sock {
-    flush_interval -1
-    transport http {
-      versions h2c
-      proxy_protocol v2
-    }
-  }
-
   @hwid_empty {
     path /{$SUB_PATH}
     expression "{$ALLOWED_HWID}" == ""
